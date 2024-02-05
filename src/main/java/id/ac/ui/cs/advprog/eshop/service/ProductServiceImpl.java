@@ -31,6 +31,6 @@ public class ProductServiceImpl implements ProductService{
     
     @Override
     public void delete(String productId) {
-        productRepository.delete(productId); // Asumsi bahwa ProductRepository memiliki metode delete
+        productRepository.delete(productId); 
     }
 }
