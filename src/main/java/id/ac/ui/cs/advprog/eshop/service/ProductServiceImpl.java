@@ -29,14 +29,12 @@ public class ProductServiceImpl implements ProductService{
         return allProduct;
     }
     
+    //untuk menginput product dan mengganti produk dengan UUID yang ingin diganti 
+    //dengan product yang diinput
     @Override
-    public void update(Product product) {
-        productRepository.update(product);
-    }
-
-    @Override
-    public Product findById(String productId) {
-        return productRepository.findById(productId);
+    public Product edit(Product product) {
+        productRepository.edit(product);
+        return product;
     }
 
 }
