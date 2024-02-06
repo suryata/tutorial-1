@@ -23,3 +23,26 @@ Saat ini, validasi input untuk quantity pada saat create dan edit product belum 
 **2. Penambahan UUID**<br/>
 Pada awalnya, productID tidak berisi value ketika dibuat (bernilai null), saya menambahkan autogenerate UUID sebagai value untuk productID untuk memudahkan operasi delete dan edit.
 
+# **Exercise 2 - Advanced Programming**
+
+## **Refleksi Pengujian Fungsional dan Unit Test**
+Menulis unit test memberikan perasaan percaya diri bahwa kode yang ditulis bekerja sesuai dengan yang diharapkan. Unit test membantu mengidentifikasi kesalahan pada tahap awal dan memudahkan proses debugging. Jumlah unit test dalam satu kelas bisa bervariasi tergantung pada kompleksitas dan fungsi dari kelas tersebut. Penting untuk mencakup skenario yang berbeda, termasuk kasus uji positif dan negatif.
+
+Meskipun unit test sangat penting, code coverage 100% tidak selalu menjamin bahwa kode bebas dari bug atau kesalahan. Coverage tinggi bisa menunjukkan bahwa sebagian besar kode telah diuji, tetapi tidak selalu mencakup semua skenario penggunaan atau perilaku edge case. Oleh karena itu, code coverage harus digunakan sebagai alat untuk meningkatkan kualitas kode, bukan sebagai indikator tunggal keberhasilan.
+
+Ketika membuat suite test fungsional tambahan seperti yang diminta, penting untuk mempertimbangkan prinsip-prinsip kode bersih untuk menjaga kualitas kode:
+
+> Potensi Masalah Kode Bersih:<br/>
+- Duplikasi Kode<br/>
+Menggunakan prosedur setup dan variabel instan yang sama dapat menyebabkan duplikasi kode.
+- Ketergantungan yang Tinggi<br/>
+Suite test yang serupa mungkin bergantung pada setup yang sama, membuatnya sulit untuk diubah atau disesuaikan nantinya.
+- Kesulitan Pemeliharaan<br/>
+Duplikasi kode dan ketergantungan yang tinggi membuat pemeliharaan menjadi lebih sulit.
+>Saran untuk Peningkatan:<br/>
+- Refactoring ke Metode yang Dapat Digunakan Kembali<br/>
+jika setup untuk suite test serupa, pertimbangkan untuk memindahkannya ke metode yang dapat digunakan kembali atau kelas basis test.
+- Penggunaan Inheritance atau Composition<br/>
+Gunakan pewarisan atau komposisi untuk meminimalkan duplikasi kode dan memanfaatkan kembali setup yang umum.
+- Pembuatan Abstraksi yang Tepat<br/>
+Buat abstraksi untuk operasi umum seperti setup dan teardown untuk meningkatkan modularity dan maintainability.
