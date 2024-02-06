@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
 
@@ -20,6 +19,7 @@ public class ProductRepositoryTest {
     void setUp(){
 
     }
+
     @Test
     void testCreateAndFind(){
         Product product = new Product();
@@ -31,7 +31,7 @@ public class ProductRepositoryTest {
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
         Product savedProduct = productIterator.next();
-        assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", savedProduct.getProductID());
+        assertEquals(product.getProductID(), savedProduct.getProductID());
         assertEquals("Sampo Cap Bambang", savedProduct.getProductName());
         assertEquals(100, savedProduct.getProductQuantity());
     }
@@ -63,5 +63,84 @@ public class ProductRepositoryTest {
         savedProduct = productIterator.next();
         assertEquals(product2.getProductID(), savedProduct.getProductID());
         assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testEditProductPositive() {
+        // Arrange
+        Product product = new Product();
+        product.setProductName("Original Product");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product updatedProduct = new Product();
+        updatedProduct.setProductID(product.getProductID()); // Same ID
+        updatedProduct.setProductName("Edited Product");
+        updatedProduct.setProductQuantity(200);
+
+        // Act
+        Product result = productRepository.edit(updatedProduct);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("Edited Product", result.getProductName());
+        assertEquals(200, result.getProductQuantity());
+    }
+
+    @Test
+    void testEditProductNegative() {
+        // Arrange
+        Product nonExistentProduct = new Product();
+        nonExistentProduct.setProductName("Non-existent Product");
+        nonExistentProduct.setProductQuantity(100);
+
+        // Act
+        Product result = productRepository.edit(nonExistentProduct);
+
+        // Assert
+        assertNull(result);
+    }
+
+    @Test
+    public void testDeleteProduct() {
+        // Arrange
+        Product product = new Product();
+        product.setProductName("ProductToDelete");
+        product.setProductQuantity(56);
+        productRepository.create(product);
+
+        // Act
+        productRepository.delete(product.getProductID());
+
+        // Assert
+        Iterator<Product> iterator = productRepository.findAll();
+        boolean productExists = false;
+        while(iterator.hasNext()) {
+            if(iterator.next().getProductID().equals(product.getProductID())) {
+                productExists = true;
+                break;
+            }
+        }
+        assertFalse(productExists);
+    }
+
+    @Test
+    public void testDeleteNonExistingProduct() {
+        // Arrange
+        String nonExistingProductId = "UUID.randomUUID";
+
+        // Act
+        productRepository.delete(nonExistingProductId);
+
+        // Assert
+        Iterator<Product> iterator = productRepository.findAll();
+        boolean productExists = false;
+        while(iterator.hasNext()) {
+            if(iterator.next().getProductID().equals(nonExistingProductId)) {
+                productExists = true;
+                break;
+            }
+        }
+        assertFalse(productExists, "Non-existing product should not exist");
     }
 }
