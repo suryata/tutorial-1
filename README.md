@@ -3,7 +3,7 @@
 **2206081370**<br/>
 **ProLan B**<br/>
 
-## **Prinsip Kode Bersih yang Diterapkan**
+## **Prinsip Clean Code yang Diterapkan**
 
 **1. Nama yang Berarti (Meaningful Names)**<br/>
 Variabel, metode, dan kelas diberi nama dengan cara yang jelas mencerminkan tujuan mereka, meningkatkan kemudahan bacaan dan kemudahan perawatan. Hal ini seperti productID, productName, dan productQuantity yang menunjukan nama variabel itu mencerminkan tujuan mereka.
@@ -30,9 +30,9 @@ Menulis unit test memberikan perasaan percaya diri bahwa kode yang ditulis beker
 
 Meskipun unit test sangat penting, code coverage 100% tidak selalu menjamin bahwa kode bebas dari bug atau kesalahan. Coverage tinggi bisa menunjukkan bahwa sebagian besar kode telah diuji, tetapi tidak selalu mencakup semua skenario penggunaan atau perilaku edge case. Oleh karena itu, code coverage harus digunakan sebagai alat untuk meningkatkan kualitas kode, bukan sebagai indikator tunggal keberhasilan.
 
-Ketika membuat suite test fungsional tambahan seperti yang diminta, penting untuk mempertimbangkan prinsip-prinsip kode bersih untuk menjaga kualitas kode:
+Ketika membuat suite test fungsional tambahan seperti yang diminta, penting untuk mempertimbangkan prinsip-prinsip clean code untuk menjaga kualitas kode:
 
-> Potensi Masalah Kode Bersih:<br/>
+> Potensi Masalah Clean Code:<br/>
 - Duplikasi Kode<br/>
 Menggunakan prosedur setup dan variabel instan yang sama dapat menyebabkan duplikasi kode.
 - Ketergantungan yang Tinggi<br/>
