@@ -1,4 +1,5 @@
 # **Exercise 1 - Advanced Programming**
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
 **I Made Surya Anahata Putra**<br/>
 **2206081370**<br/>
 **ProLan B**<br/>

@@ -40,6 +40,7 @@ dependencies {
 	testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+	testImplementation("org.mockito:mockito-core")
 }
 
 tasks.register<Test>("unitTest"){
