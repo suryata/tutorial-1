@@ -1,5 +1,5 @@
-# **Exercise 1 - Advanced Programming**
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)<br/>
+# **Modul 1 - Advanced Programming**
 **I Made Surya Anahata Putra**<br/>
 **2206081370**<br/>
 **ProLan B**<br/>
@@ -24,8 +24,6 @@ Saat ini, validasi input untuk quantity pada saat create dan edit product belum 
 **2. Penambahan UUID**<br/>
 Pada awalnya, productID tidak berisi value ketika dibuat (bernilai null), saya menambahkan autogenerate UUID sebagai value untuk productID untuk memudahkan operasi delete dan edit.
 
-# **Exercise 2 - Advanced Programming**
-
 ## **Refleksi Pengujian Fungsional dan Unit Test**
 Menulis unit test memberikan perasaan percaya diri bahwa kode yang ditulis bekerja sesuai dengan yang diharapkan. Unit test membantu mengidentifikasi kesalahan pada tahap awal dan memudahkan proses debugging. Jumlah unit test dalam satu kelas bisa bervariasi tergantung pada kompleksitas dan fungsi dari kelas tersebut. Penting untuk mencakup skenario yang berbeda, termasuk kasus uji positif dan negatif.
 
@@ -47,3 +45,5 @@ jika setup untuk suite test serupa, pertimbangkan untuk memindahkannya ke metode
 Gunakan pewarisan atau komposisi untuk meminimalkan duplikasi kode dan memanfaatkan kembali setup yang umum.
 - Pembuatan Abstraksi yang Tepat<br/>
 Buat abstraksi untuk operasi umum seperti setup dan teardown untuk meningkatkan modularity dan maintainability.
+
+# **Modul 2 - Advanced Programming**
