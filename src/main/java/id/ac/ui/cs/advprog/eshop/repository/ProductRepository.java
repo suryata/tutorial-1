@@ -22,26 +22,15 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public void update(Product product) {
-        for (int i = 0; i < productData.size(); i++) {
-            if (productData.get(i).getProductID().equals(product.getProductID())) {
-                productData.set(i, product);
-                break;
-            }
-        }
-    }
-
     public Product edit(Product product){
         for (Product thisProduct: productData) {
-            if (thisProduct.getProductID().equals(product.getProductID())) {
+            if (thisProduct.getProductID().equals(product.getProductID())) 
                 thisProduct.setProductQuantity(product.getProductQuantity());
                 thisProduct.setProductName(product.getProductName());
-                return thisProduct;
-            }
+                return thisProduct;   
         }
         return null;
     }
-
 
     public void delete(String productId){
         productData.removeIf(product -> product.getProductID().equals(productId));
