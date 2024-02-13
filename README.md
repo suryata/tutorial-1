@@ -1,4 +1,4 @@
->Sonarcloud Stats<br/>
+# **Tutorial Pemrograman Lanjut 2023/2024 Genap**
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=bugs)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
@@ -6,9 +6,7 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
 
-**Tutorial Pemrograman Lanjut 2023/2024 Genap**
->Link Aplikasi
-### [E-Shop](https://eshop-suryata.koyeb.app/)
+>[E-Shop](https://eshop-suryata.koyeb.app/)
 
 **I Made Surya Anahata Putra**<br/>
 **2206081370**<br/>
@@ -73,7 +71,7 @@ Untuk workflow yang saya gunakan yaitu:
 -  `pmd.yml`<br>
 
 Workflow-workflow ini secara otomatis akan dijalankan ketika ada push atau pull request ke suatu _branch_. Ini merupakan suatu pengaplikasian dari konsep continuous integration (CI). <br>
-Untuk Continuous Deployment (CD) sendiri , saya menggunakan paltform yang direkomendasikan pada modu lyaitu _Koyeb_ sebagai _platform_ yang akan secara otomatis melakukan _deploy_ aplikasi saya ketika ada _push_ atau _pull request_ ke suatu _branch_.
+Untuk Continuous Deployment (CD) sendiri, saya menggunakan paltform yang direkomendasikan pada modul yang diberikan yaitu dengan menggunakan platform _Koyeb_ sebagai _platform_ yang akan secara otomatis melakukan _deploy_ aplikasi ketika ada _push_ atau _pull request_ ke suatu _branch_, ini dilengkapi juga dengan _Dockerfile_ yang diberikan pada modul. 
 
 ## Reflection sebelumnya
 <details>
