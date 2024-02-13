@@ -27,9 +27,10 @@ public class ProductRepository {
     }
 
     public Product edit(Product product) {
-        if(idtoProductHashMap.get(product.getProductID())!=null){
-            product.setProductQuantity(product.getProductQuantity());
-            product.setProductName(product.getProductName());
+        Product oldProduct = idtoProductHashMap.get(product.getProductID());
+        if(oldProduct!=null){
+            oldProduct.setProductQuantity(product.getProductQuantity());
+            oldProduct.setProductName(product.getProductName());
             return product; 
         }else{
             return null;
