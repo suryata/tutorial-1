@@ -28,10 +28,7 @@ public class ProductRepository {
                 thisProduct.setProductQuantity(product.getProductQuantity());
                 thisProduct.setProductName(product.getProductName());
                 return thisProduct;
-            }
-            else{
-                continue;
-            }   
+            }  
         }
         return null;
     }
