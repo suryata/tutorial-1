@@ -23,13 +23,20 @@ public class ProductRepository {
     }
 
     public Product edit(Product product){
+        boolean found = false;
         for (Product thisProduct: productData) {
-            if (thisProduct.getProductID().equals(product.getProductID()))
+            if (thisProduct.getProductID().equals(product.getProductID())){
                 thisProduct.setProductQuantity(product.getProductQuantity());
                 thisProduct.setProductName(product.getProductName());
-                return thisProduct;
+                found=true;
+                break;
+            }  
         }
-        return null;
+        if(found){
+            return product;
+        }else{
+            return null;
+        }
     }
 
     public void delete(String productId){
