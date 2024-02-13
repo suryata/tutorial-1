@@ -1,9 +1,79 @@
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)<br/>
-# **Modul 1 - Advanced Programming**
+
+**Tutorial Pemrograman Lanjut 2023/2024 Genap**
+>Link Aplikasi
+### [E-Shop](https://eshop-suryata.koyeb.app/)
+
 **I Made Surya Anahata Putra**<br/>
 **2206081370**<br/>
 **ProLan B**<br/>
+# **Modul 2 - Advanced Programming**
+> List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them
+#### 1. **Table should have caption**
+**Permasalahan:** table perlu mempunyai sebuah caption untuk mengidentifikasi table tersebut.
+**Contoh Isu pada Proyek**:
+```html
+<table border="1" class="table table-striped table-responsive-md" id="productList">
+        <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product: ${products}">
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.productQuantity}"></td>
+            <td>
+                <a th:href="@{/product/delete/{productId}(productId=${product.productID})}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{/product/edit/{productId}(productId=${product.productID})}" class="btn btn-info btn-sm">Edit</a>
+            </td>            
+        </tr>
+        </tbody>
+    </table>
+```
+**Solusi:** Menambahkan tag `<caption>` pada tabel tersebut.
+```html
+<table border="1" class="table table-striped table-responsive-md" id="productList">
+        <caption>Product table</caption>
+        <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product: ${products}">
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.productQuantity}"></td>
+            <td>
+                <a th:href="@{/product/delete/{productId}(productId=${product.productID})}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{/product/edit/{productId}(productId=${product.productID})}" class="btn btn-info btn-sm">Edit</a>
+            </td>            
+        </tr>
+        </tbody>
+    </table>
+```
 
+>Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment?<br>
+
+Pada workflows CI/CD yang sudah saya implementasikan pada proyek tutorial-1, saya sudah mengimplementasikan CI/CD pada proyek saya yaitu dengan menggunakan _GitHub Actions_ untuk menjalankan _workflow_ yang saya buat. <br>
+Untuk workflow yang saya gunakan yaitu:
+-  `ci.yml`
+-  `scorecard.yml`
+-  `sonarcloud.yml`
+-  `pmd.yml`<br>
+<br>
+_Workflow-workflow_ ini secara otomatis akan dijalankan ketika ada _push_ atau _pull request_ ke suatu _branch_. Ini merupakan suatu pengaplikasian dari konsep continuous integration (CI). <br>
+Untuk Continuous Deployment (CD) sendiri , saya menggunakan paltform yang direkomendasikan pada modu lyaitu _Koyeb_ sebagai _platform_ yang akan secara otomatis melakukan _deploy_ aplikasi saya ketika ada _push_ atau _pull request_ ke suatu _branch_.
+
+## Reflection sebelumnya
+<details>
+<summary>Module 1</summary>
+
+# **Modul 1 - Advanced Programming**
 ## **Prinsip Clean Code yang Diterapkan**
 
 **1. Nama yang Berarti (Meaningful Names)**<br/>
@@ -46,4 +116,6 @@ Gunakan pewarisan atau komposisi untuk meminimalkan duplikasi kode dan memanfaat
 - Pembuatan Abstraksi yang Tepat<br/>
 Buat abstraksi untuk operasi umum seperti setup dan teardown untuk meningkatkan modularity dan maintainability.
 
-# **Modul 2 - Advanced Programming**
+
+
+
