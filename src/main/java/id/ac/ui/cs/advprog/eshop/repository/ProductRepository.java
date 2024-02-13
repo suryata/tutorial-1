@@ -4,17 +4,21 @@ import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Repository
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
+    private Map<String, Product> idtoProductHashMap = new HashMap<>();
 
     public Product create(Product product){
         product.setProductID(String.valueOf(UUID.randomUUID()));
         productData.add(product);
+        idtoProductHashMap.put(product.getProductID(), product);
         return product;
     }
 
@@ -22,25 +26,16 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Product edit(Product product){
-        boolean found = false;
-        for (Product thisProduct: productData) {
-            if (thisProduct.getProductID().equals(product.getProductID())){
-                thisProduct.setProductQuantity(product.getProductQuantity());
-                thisProduct.setProductName(product.getProductName());
-                found=true;
-                break;
-            }else{
-                found=false;
-            }
-        }
-        if(found){
-            return product;
+    public Product edit(Product product) {
+        if(idtoProductHashMap.get(product.getProductID())!=null){
+            product.setProductQuantity(product.getProductQuantity());
+            product.setProductName(product.getProductName());
+            return product; 
         }else{
             return null;
         }
     }
-
+    
     public void delete(String productId){
         productData.removeIf(product -> product.getProductID().equals(productId));
     }

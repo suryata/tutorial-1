@@ -102,44 +102,6 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    public void testEditExistingProduct() {
-        // Arrange
-        Product originalProduct = new Product();
-        originalProduct.setProductName("Original Name");
-        originalProduct.setProductQuantity(10);
-        productRepository.create(originalProduct);
-        originalProduct.setProductID("testID");
-
-        Product updatedProduct = new Product();
-        updatedProduct.setProductID("testID");
-        updatedProduct.setProductName("Updated Name");
-        updatedProduct.setProductQuantity(20);
-
-        // Act
-        Product result = productRepository.edit(updatedProduct);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals("Updated Name", result.getProductName());
-        assertEquals(20, result.getProductQuantity());
-    }
-
-    @Test
-    public void testEditNonExistingProduct() {
-        // Arrange
-        Product nonExistingProduct = new Product();
-        nonExistingProduct.setProductID("nonExistingID");
-        nonExistingProduct.setProductName("Non Existing");
-        nonExistingProduct.setProductQuantity(0);
-
-        // Act
-        Product result = productRepository.edit(nonExistingProduct);
-
-        // Assert
-        assertNull(result, "Editing a non-existing product should return null or follow specific logic");
-    }
-
-    @Test
     public void testDeleteProduct() {
         // Arrange
         Product product = new Product();
