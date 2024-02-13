@@ -24,10 +24,14 @@ public class ProductRepository {
 
     public Product edit(Product product){
         for (Product thisProduct: productData) {
-            if (thisProduct.getProductID().equals(product.getProductID())) 
+            if (thisProduct.getProductID().equals(product.getProductID())){
                 thisProduct.setProductQuantity(product.getProductQuantity());
                 thisProduct.setProductName(product.getProductName());
-                return thisProduct;   
+                return thisProduct;
+            }
+            else{
+                continue;
+            }   
         }
         return null;
     }

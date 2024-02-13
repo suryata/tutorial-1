@@ -60,7 +60,9 @@
         </tbody>
     </table>
 ```
-
+Replace `as` with upper case format `AS`.
+Remove this unused productID, productName, productQuantity private field.
+Remove this "return" statement or make it conditional. repo.java
 >Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment?<br>
 
 Pada workflows CI/CD yang sudah saya implementasikan pada proyek tutorial-1, saya sudah mengimplementasikan CI/CD pada proyek saya yaitu dengan menggunakan _GitHub Actions_ untuk menjalankan _workflow_ yang saya buat. <br>
