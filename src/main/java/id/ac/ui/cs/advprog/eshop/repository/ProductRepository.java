@@ -30,7 +30,9 @@ public class ProductRepository {
                 thisProduct.setProductName(product.getProductName());
                 found=true;
                 break;
-            }  
+            }else{
+                found=false;
+            }
         }
         if(found){
             return product;
