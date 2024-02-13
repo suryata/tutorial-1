@@ -1,4 +1,10 @@
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)<br/>
+>Sonarcloud Stats<br/>
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=bugs)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=suryata_tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=suryata_tutorial-1)
 
 **Tutorial Pemrograman Lanjut 2023/2024 Genap**
 >Link Aplikasi
@@ -10,7 +16,7 @@
 # **Modul 2 - Advanced Programming**
 > List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them
 #### 1. **Table should have caption**
-**Permasalahan:** table perlu mempunyai sebuah caption untuk mengidentifikasi table tersebut.
+**Permasalahan:** table perlu mempunyai sebuah caption untuk mengidentifikasi table tersebut.<br/>
 **Contoh Isu pada Proyek**:
 ```html
 <table border="1" class="table table-striped table-responsive-md" id="productList">
@@ -65,8 +71,8 @@ Untuk workflow yang saya gunakan yaitu:
 -  `scorecard.yml`
 -  `sonarcloud.yml`
 -  `pmd.yml`<br>
-<br>
-_Workflow-workflow_ ini secara otomatis akan dijalankan ketika ada _push_ atau _pull request_ ke suatu _branch_. Ini merupakan suatu pengaplikasian dari konsep continuous integration (CI). <br>
+
+Workflow-workflow ini secara otomatis akan dijalankan ketika ada push atau pull request ke suatu _branch_. Ini merupakan suatu pengaplikasian dari konsep continuous integration (CI). <br>
 Untuk Continuous Deployment (CD) sendiri , saya menggunakan paltform yang direkomendasikan pada modu lyaitu _Koyeb_ sebagai _platform_ yang akan secara otomatis melakukan _deploy_ aplikasi saya ketika ada _push_ atau _pull request_ ke suatu _branch_.
 
 ## Reflection sebelumnya
