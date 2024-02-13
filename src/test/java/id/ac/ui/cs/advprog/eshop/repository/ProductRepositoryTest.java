@@ -105,13 +105,13 @@ public class ProductRepositoryTest {
     public void testEditExistingProduct() {
         // Arrange
         Product originalProduct = new Product();
-        originalProduct.setProductID("testID");
         originalProduct.setProductName("Original Name");
         originalProduct.setProductQuantity(10);
         productRepository.create(originalProduct);
+        originalProduct.setProductID("testID");
 
         Product updatedProduct = new Product();
-        updatedProduct.setProductID("testID"); // Same ID as original
+        updatedProduct.setProductID("testID");
         updatedProduct.setProductName("Updated Name");
         updatedProduct.setProductQuantity(20);
 
