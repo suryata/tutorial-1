@@ -16,20 +16,20 @@ public class CarRepository{
     public Car create(Car car){
         if(car.getCarId()==null){
             UUID uuid = UUID.randomUUID();
-            car.setCarId(UUID.toString());
+            car.setCarId(uuid.toString());
         }
 
         carData.add(car);
         return car;
     }
 
-    public Iterator<car> findAll(){
+    public Iterator<Car> findAll(){
         return carData.iterator();
     }
 
     public Car findById(String id){
         for (Car car : carData){
-            if car.getCarId().equals(id){
+            if(car.getCarId().equals(id)){
                 return car;
             }
         }
@@ -39,14 +39,18 @@ public class CarRepository{
     public Car update(String id, Car updatedCar){
         for(int i=0;i<carData.size();i++){
             Car car = carData.get(i);
-            if(car.getCarId.equals(id)){
+            if(car.getCarId().equals(id)){
                 //update existing car
                 car.setCarName(updatedCar.getCarName());
-                car.setQuantitiy(updatedCar.getCarQuantity());
-                car.setColor(updatedCar.getCarColor());
+                car.setCarQuantity(updatedCar.getCarQuantity());
+                car.setCarColor(updatedCar.getCarColor());
                 return car;
             }
         }
         return null;
+    }
+
+    public void delete(String id){
+        carData.removeIf(car -> car.getCarId().equals(id));
     }
 }
