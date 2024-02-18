@@ -41,8 +41,12 @@ public class CarRepository{
             Car car = carData.get(i);
             if(car.getCarId.equals(id)){
                 //update existing car
-                car.setCarName(updatedCar.getCarName())
+                car.setCarName(updatedCar.getCarName());
+                car.setQuantitiy(updatedCar.getCarQuantity());
+                car.setColor(updatedCar.getCarColor());
+                return car;
             }
         }
+        return null;
     }
 }
