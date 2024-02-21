@@ -11,6 +11,22 @@
 **I Made Surya Anahata Putra**<br/>
 **2206081370**<br/>
 **ProLan B**<br/>
+
+single responsibility principle
+# **Modul 3 - Advanced Programming**
+> 1) Explain what principles you apply to your project!
+### 1. *Single Responsibility Principle*
+> i. 
+> 2) Explain the advantages of applying SOLID principles to your project with examples.
+> 3) Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+
+
+## Reflection sebelumnya
+<details>
+<summary>Module 2</summary>
+
+
 # **Modul 2 - Advanced Programming**
 > List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them
 #### 1. **Table should have caption**
@@ -89,10 +105,11 @@ Untuk workflow yang saya gunakan yaitu:
 
 Workflow-workflow ini secara otomatis akan dijalankan ketika ada push atau pull request ke suatu _branch_. Ini merupakan suatu pengaplikasian dari konsep continuous integration (CI). <br>
 Untuk Continuous Deployment (CD) sendiri, saya menggunakan paltform yang direkomendasikan pada modul yang diberikan yaitu dengan menggunakan platform _Koyeb_ sebagai _platform_ yang akan secara otomatis melakukan _deploy_ aplikasi ketika ada _push_ atau _pull request_ ke suatu _branch_, ini dilengkapi juga dengan _Dockerfile_ yang diberikan pada modul. 
+</details>
 
-## Reflection sebelumnya
 <details>
 <summary>Module 1</summary>
+
 
 # **Modul 1 - Advanced Programming**
 ## **Prinsip Clean Code yang Diterapkan**
@@ -136,7 +153,4 @@ jika setup untuk suite test serupa, pertimbangkan untuk memindahkannya ke metode
 Gunakan pewarisan atau komposisi untuk meminimalkan duplikasi kode dan memanfaatkan kembali setup yang umum.
 - Pembuatan Abstraksi yang Tepat<br/>
 Buat abstraksi untuk operasi umum seperti setup dan teardown untuk meningkatkan modularity dan maintainability.
-
-
-
-
+</details>
