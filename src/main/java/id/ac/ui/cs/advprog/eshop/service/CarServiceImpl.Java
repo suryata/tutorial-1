@@ -10,40 +10,40 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements CarService{
+public class CarServiceImpl implements GenericService<Car>{
     @Autowired
     private CarRepository carRepository;
 
     @Override
-    public Car create(Car car){
-        // TODO Auto-generated method stub
+    public Car create(Car car) {
         carRepository.create(car);
         return car;
     }
 
     @Override
-    public List<Car> findAll(){
-        Iterator<Car> carIterator =carRepository.findAll();
+    public List<Car> findAll() {
+        Iterator<Car> carIterator = carRepository.findAll();
         List<Car> allCar = new ArrayList<>();
         carIterator.forEachRemaining(allCar::add);
         return allCar;
+    }
+    
+    //untuk menginput car dan mengganti produk dengan UUID yang ingin diganti 
+    //dengan car yang diinput
+    @Override
+    public Car update(String id, Car car) {
+        carRepository.update(id, car);
+        return car;
+    }
+
+    @Override
+    public void delete(String carId) {
+        carRepository.delete(carId); 
     }
 
     @Override
     public Car findById(String carId){
         Car car = carRepository.findById(carId);
         return car;
-    }
-
-    @Override
-    public void update(String carId, Car car) {
-        // TODO Auto-generated method stub
-        carRepository.update(carId, car);
-    }
-
-    @Override
-    public void deleteCarById(String carId) {
-        // TODO Auto-generated method stub
-        carRepository.delete(carId);
     }
 }

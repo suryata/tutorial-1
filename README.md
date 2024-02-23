@@ -15,8 +15,68 @@
 single responsibility principle
 # **Modul 3 - Advanced Programming**
 > 1) Explain what principles you apply to your project!
-### 1. *Single Responsibility Principle*
-> i. 
+### 1. *Single Responsibility Principle (SRP)*
+    Prinsip SRP yang saya terapkan pada project ini pada bagian Repository adalah dengan memisahkan method generate UUID dengan membuat class baru yaitu "UniqueIdGenerator" yang berfungsi untuk membuat UUID random. Ini sesuai dengan prinsip SRP yaitu dengan 
+    membuat setiap class hanya bertanggung jawab untuk menjalankan satu method saja.
+```java
+UniqueIdGenerator.java:
+import java.util.UUID;
+
+public class UniqueIdGenerator {
+    public static String generate() {
+        return UUID.randomUUID().toString();
+    }
+}
+```
+Selain itu saya juga mengaplikasikan SRP pada Controller yaitu dengan memisahkan controller berdasarkan entitas yang mereka kelola, kita mengurangi kompleksitas dan ketergantungan antar bagian dari aplikasi. Misalnya, jika ada perubahan dalam cara entitas Product yang harus diproses atau ditampilkan, hanya ProductController yang perlu diubah, tanpa mempengaruhi CarController atau bagian lain dari aplikasi. Ini mendukung prinsip pemeliharaan dan skalabilitas kode yang baik.
+
+### 2. *Open-Closed Principle (OCP)*
+    Pada project ini saya menggunakan prinsip OCP untuk membuat interface baru yang digunakan untuk CarRepository dan ProductRepository karena memiliki kesamaan yaitu sebagai suatu penyimpanan objek yang dibuat, maka saya membuat suatu interface bernama "AllRepository" yang berguna untuk pengembangan selanjutnya yang sesuai dengan prinsip OCP.
+    Berikut merupakan interface dari AllRepository:
+```java
+public interface AllRepository<T> {
+    T create(T entity);
+    Iterator<T> findAll();
+    T findById(String id);
+    T update(String id, T entity);
+    void delete(String id);
+}
+```
+
+### 3. *Liskov Substitution Principle (LSP)*
+Dalam mengaplikasikan LSP saya menghapus interface carService dan productService karena memiliki method yang mirip dan saya membuat suatu interface yaiut "GenericService" yaitu sebuah interface umum dengan generics memungkinkan objek dari berbagai kelas yang mengimplementasikan interface ini untuk digunakan secara bergantian tanpa merusak integritas aplikasi.
+Berikut merupakan penerapan dari interface tersebut:
+```java
+public interface GenericService<T> {
+    T create(T entity);
+    List<T> findAll();
+    T update(String id, T entity);
+    T findById(String id);
+    void delete(String id);
+}
+```
+### 4. *Interface Segregation Principle (ISP)*
+    1. Pada Level Controller
+Dalam desain yang telah disampaikan, penerapan ISP tercermin melalui pembuatan ProductController dan CarController secara terpisah.
+
+ProductController hanya meminta operasi yang berkaitan dengan Product dari ProductService, dan sama sekali tidak bergantung pada operasi atau fungsi yang berkaitan dengan Car.
+CarController beroperasi secara analog, hanya berinteraksi dengan CarService dan tidak bergantung pada fungsi yang berkaitan dengan Product.
+Ini memastikan bahwa setiap controller hanya bergantung pada interface layanan yang menyediakan fungsi yang relevan dengan entitas yang mereka kelola, sesuai dengan ISP.
+
+2. Pada Level Repository
+ISP juga berlaku pada level repository dengan cara yang serupa. Dengan memisahkan ProductRepository dari CarRepository, setiap repository hanya menyediakan metode akses data yang relevan untuk entitas tertentu.
+
+ProductRepository akan berfokus pada operasi CRUD (Create, Read, Update, Delete) yang berkaitan dengan produk.
+CarRepository akan mengimplementasikan operasi CRUD untuk mobil.
+Ini memastikan bahwa setiap bagian dari sistem hanya bergantung pada bagian lain yang menyediakan fungsionalitas yang diperlukan, tanpa memaksa bagian tersebut untuk bergantung pada fungsionalitas yang tidak relevan.
+
+### 5. *Dependency Inversions Principle (DIP)*
+Pengaplikasian dalam Controller:
+Prinsip Dependency Inversion Principle (DIP) diaplikasikan dalam ProductController dan CarController melalui penggunaan injeksi dependensi (@Autowired) pada konstruktor. Prinsip ini menyatakan dua hal utama:
+
+- Modul tingkat tinggi tidak harus bergantung pada modul tingkat rendah. Kedua harus bergantung pada abstraksi.
+- Abstraksi tidak boleh bergantung pada detail. Detail harus bergantung pada abstraksi.
+Dalam konteks controller ini, modul tingkat tinggi (controller) tidak langsung bergantung pada implementasi layanan (modul tingkat rendah) seperti ProductServiceImpl atau CarServiceImpl. Sebaliknya, mereka bergantung pada abstraksi (Generic `<T>` interfaces). </br>
 > 2) Explain the advantages of applying SOLID principles to your project with examples.
 > 3) Explain the disadvantages of not applying SOLID principles to your project with examples.
 

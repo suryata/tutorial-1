@@ -8,16 +8,16 @@ import java.util.Iterator;
 import java.util.Map;
 
 @Repository
-public class ProductRepository implements AllRepository<Product> {
+public class ProductRepository implements GenericRepository<Product> {
     private Map<String, Product> idToProductMap = new HashMap<>();
 
     @Override
     public Product create(Product product) {
-        product.setProductID(UniqueIdGenerator.generate());
+        product.setProductID(product.getProductID() == null ? UniqueIdGenerator.generate() : product.getProductID());
         idToProductMap.put(product.getProductID(), product);
         return product;
     }
-
+    
     @Override
     public Iterator<Product> findAll() {
         return idToProductMap.values().iterator();
@@ -44,4 +44,3 @@ public class ProductRepository implements AllRepository<Product> {
         idToProductMap.remove(id);
     }
 }
-
