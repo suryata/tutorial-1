@@ -12,12 +12,11 @@
 **2206081370**<br/>
 **ProLan B**<br/>
 
-single responsibility principle
 # **Modul 3 - Advanced Programming**
-> 1) Explain what principles you apply to your project!
-### 1. *Single Responsibility Principle (SRP)*
-    Prinsip SRP yang saya terapkan pada project ini pada bagian Repository adalah dengan memisahkan method generate UUID dengan membuat class baru yaitu "UniqueIdGenerator" yang berfungsi untuk membuat UUID random. Ini sesuai dengan prinsip SRP yaitu dengan 
-    membuat setiap class hanya bertanggung jawab untuk menjalankan satu method saja.
+## 1. Explain what principles you apply to your project! ##
+
+###     1. *Single Responsibility Principle (SRP)*
+    Prinsip SRP yang saya terapkan pada project ini pada bagian Repository adalah dengan memisahkan method generate UUID dengan membuat class baru yaitu "UniqueIdGenerator" yang berfungsi untuk membuat UUID random. Ini sesuai dengan prinsip SRP yaitu dengan membuat setiap class hanya bertanggung jawab untuk menjalankan satu method saja.
 ```java
 UniqueIdGenerator.java:
 import java.util.UUID;
@@ -28,13 +27,13 @@ public class UniqueIdGenerator {
     }
 }
 ```
-Selain itu saya juga mengaplikasikan SRP pada Controller yaitu dengan memisahkan controller berdasarkan entitas yang mereka kelola, kita mengurangi kompleksitas dan ketergantungan antar bagian dari aplikasi. Misalnya, jika ada perubahan dalam cara entitas Product yang harus diproses atau ditampilkan, hanya ProductController yang perlu diubah, tanpa mempengaruhi CarController atau bagian lain dari aplikasi. Ini mendukung prinsip pemeliharaan dan skalabilitas kode yang baik.
+    Selain itu saya juga mengaplikasikan SRP pada Controller yaitu dengan memisahkan controller berdasarkan entitas yang mereka kelola, saya mengurangi kompleksitas dan ketergantungan antar bagian dari aplikasi. Misalnya, jika ada perubahan dalam cara entitas Product yang harus diproses atau ditampilkan, hanya ProductController yang perlu diubah, tanpa mempengaruhi CarController atau bagian lain dari aplikasi. Ini mendukung prinsip pemeliharaan dan skalabilitas kode yang baik.
 
 ### 2. *Open-Closed Principle (OCP)*
-    Pada project ini saya menggunakan prinsip OCP untuk membuat interface baru yang digunakan untuk CarRepository dan ProductRepository karena memiliki kesamaan yaitu sebagai suatu penyimpanan objek yang dibuat, maka saya membuat suatu interface bernama "AllRepository" yang berguna untuk pengembangan selanjutnya yang sesuai dengan prinsip OCP.
-    Berikut merupakan interface dari AllRepository:
+    Pada project ini saya menggunakan prinsip OCP untuk membuat interface baru yang digunakan untuk CarRepository dan ProductRepository karena memiliki kesamaan yaitu sebagai suatu penyimpanan objek yang dibuat, maka saya membuat suatu interface bernama "GenericRepository" yang berguna untuk pengembangan selanjutnya yang sesuai dengan prinsip OCP.
+    Berikut merupakan interface dari GenericRepository:
 ```java
-public interface AllRepository<T> {
+public interface GenericRepository<T> {
     T create(T entity);
     Iterator<T> findAll();
     T findById(String id);
@@ -44,8 +43,8 @@ public interface AllRepository<T> {
 ```
 
 ### 3. *Liskov Substitution Principle (LSP)*
-Dalam mengaplikasikan LSP saya menghapus interface carService dan productService karena memiliki method yang mirip dan saya membuat suatu interface yaiut "GenericService" yaitu sebuah interface umum dengan generics memungkinkan objek dari berbagai kelas yang mengimplementasikan interface ini untuk digunakan secara bergantian tanpa merusak integritas aplikasi.
-Berikut merupakan penerapan dari interface tersebut:
+    Dalam mengaplikasikan LSP saya menghapus interface carService dan productService karena memiliki method yang mirip dan saya membuat suatu interface baru yaitu "GenericService" yaitu sebuah interface umum dengan generics memungkinkan objek dari berbagai kelas yang mengimplementasikan interface ini untuk digunakan secara bergantian tanpa merusak integritas aplikasi.
+    Berikut merupakan penerapan dari interface tersebut:
 ```java
 public interface GenericService<T> {
     T create(T entity);
@@ -56,31 +55,57 @@ public interface GenericService<T> {
 }
 ```
 ### 4. *Interface Segregation Principle (ISP)*
-    1. Pada Level Controller
-Dalam desain yang telah disampaikan, penerapan ISP tercermin melalui pembuatan ProductController dan CarController secara terpisah.
+        Pada Level Controller
+        Dalam desain yang telah disampaikan, penerapan ISP tercermin melalui pembuatan ProductController dan CarController secara terpisah.
 
-ProductController hanya meminta operasi yang berkaitan dengan Product dari ProductService, dan sama sekali tidak bergantung pada operasi atau fungsi yang berkaitan dengan Car.
-CarController beroperasi secara analog, hanya berinteraksi dengan CarService dan tidak bergantung pada fungsi yang berkaitan dengan Product.
-Ini memastikan bahwa setiap controller hanya bergantung pada interface layanan yang menyediakan fungsi yang relevan dengan entitas yang mereka kelola, sesuai dengan ISP.
-
-2. Pada Level Repository
-ISP juga berlaku pada level repository dengan cara yang serupa. Dengan memisahkan ProductRepository dari CarRepository, setiap repository hanya menyediakan metode akses data yang relevan untuk entitas tertentu.
-
-ProductRepository akan berfokus pada operasi CRUD (Create, Read, Update, Delete) yang berkaitan dengan produk.
-CarRepository akan mengimplementasikan operasi CRUD untuk mobil.
-Ini memastikan bahwa setiap bagian dari sistem hanya bergantung pada bagian lain yang menyediakan fungsionalitas yang diperlukan, tanpa memaksa bagian tersebut untuk bergantung pada fungsionalitas yang tidak relevan.
+        ProductController hanya meminta operasi yang berkaitan dengan Product dari ProductService, dan sama sekali tidak bergantung pada operasi atau fungsi yang berkaitan dengan Car.
+        CarController beroperasi secara analog, hanya berinteraksi dengan CarService dan tidak bergantung pada fungsi yang berkaitan dengan Product.
+        Ini memastikan bahwa setiap controller hanya bergantung pada interface layanan yang menyediakan fungsi yang relevan dengan entitas yang mereka kelola, sesuai dengan ISP.
 
 ### 5. *Dependency Inversions Principle (DIP)*
-Pengaplikasian dalam Controller:
-Prinsip Dependency Inversion Principle (DIP) diaplikasikan dalam ProductController dan CarController melalui penggunaan injeksi dependensi (@Autowired) pada konstruktor. Prinsip ini menyatakan dua hal utama:
+    Pengaplikasian dalam Controller:
+    Prinsip Dependency Inversion Principle (DIP) diaplikasikan dalam ProductController dan CarController melalui penggunaan injeksi dependensi (@Autowired) pada konstruktor. Prinsip ini menyatakan dua hal utama:
 
-- Modul tingkat tinggi tidak harus bergantung pada modul tingkat rendah. Kedua harus bergantung pada abstraksi.
-- Abstraksi tidak boleh bergantung pada detail. Detail harus bergantung pada abstraksi.
-Dalam konteks controller ini, modul tingkat tinggi (controller) tidak langsung bergantung pada implementasi layanan (modul tingkat rendah) seperti ProductServiceImpl atau CarServiceImpl. Sebaliknya, mereka bergantung pada abstraksi (Generic `<T>` interfaces). </br>
-> 2) Explain the advantages of applying SOLID principles to your project with examples.
-> 3) Explain the disadvantages of not applying SOLID principles to your project with examples.
+    - Modul tingkat tinggi tidak harus bergantung pada modul tingkat rendah. Kedua harus bergantung pada abstraksi.
+    - Abstraksi tidak boleh bergantung pada detail. Detail harus bergantung pada abstraksi.
 
+    Dalam konteks controller ini, modul tingkat tinggi (controller) tidak langsung bergantung pada implementasi layanan (modul tingkat rendah) seperti ProductServiceImpl atau CarServiceImpl. Sebaliknya, mereka bergantung pada abstraksi (GenericService<T> interfaces).
 
+## 2. Explain the advantages of applying SOLID principles to your project with examples ##
+Berikut adalah beberapa contoh spesifik dari keuntungan penerapan SOLID dalam proyek saya:
+
+### 1. Single Responsibility Principle (SRP) ### 
+        Dengan memisahkan tanggung jawab, seperti menggunakan UniqueIdGenerator untuk pembuatan UUID, dan memisahkan ProductController dari CarController, saya membuat komponen yang lebih bersih dan terfokus. Ini memudahkan pemeliharaan dan pengujian karena perubahan pada satu bagian tidak mempengaruhi bagian lain. Misalnya, jika perlu mengubah cara UUID dihasilkan, saya hanya perlu memodifikasi UniqueIdGenerator, tanpa menyentuh bagian lain dari kode.
+
+### 2. Open-Closed Principle (OCP) ### 
+    Dengan mendesain GenericRepository yang dapat diperluas untuk tipe data baru tanpa perlu mengubah kode yang ada, saya memastikan bahwa sistem saya mudah untuk dikembangkan. Ketika ada kebutuhan untuk menambahkan entitas baru, seperti Customer, saya hanya perlu membuat implementasi baru dari GenericRepository tanpa mengubah definisi atau implementasi yang sudah ada.
+
+### 3. Liskov Substitution Principle (LSP) ### 
+    Implementasi GenericService memungkinkan objek dari berbagai kelas yang mengimplementasikan interface ini digunakan secara bergantian. Hal ini meningkatkan modularitas kode dan memudahkan penggantian atau penambahan fungsionalitas baru tanpa merusak sistem. Sebagai contoh, jika saya memutuskan untuk mengganti logika bisnis untuk Product, selama mengikuti kontrak yang ditetapkan oleh GenericService, penggantian tersebut tidak akan merusak fungsi yang bergantung pada ProductService.
+
+### 4. Interface Segregation Principle (ISP) ### 
+    Dengan memisahkan interface (ProductController dan CarController, serta ProductRepository dan CarRepository), setiap komponen hanya bergantung pada fungsionalitas yang mereka perlukan. Ini mengurangi ketergantungan tidak perlu dan membuat kode lebih bersih serta mudah untuk diikuti. Misalnya, pengembang yang bekerja pada Car tidak perlu memahami atau bahkan mengetahui tentang kode atau fungsionalitas yang spesifik untuk Product.
+
+### 5. Dependency Inversion Principle (DIP) ### 
+    Injeksi dependensi melalui konstruktor (@Autowired) dalam controller memastikan bahwa komponen tingkat tinggi tidak bergantung pada komponen tingkat rendah, tetapi keduanya bergantung pada abstraksi. Ini memudahkan pengujian unit dan dekoplasi kode, membuat sistem lebih fleksibel dan mudah untuk diadaptasi atau dikembangkan.
+
+## 3. Explain the disadvantages of not applying SOLID principles to your project with examples ##
+Tidak menerapkan prinsip SOLID dapat mengakibatkan berbagai masalah dalam pengembangan dan pemeliharaan perangkat lunak, termasuk:
+
+### 1. Kurangnya Modularitas ###
+Tanpa SRP, kode cenderung menjadi monolitik dan melakukan terlalu banyak fungsi. Sebagai contoh, jika ProductController juga menangani logika untuk Car, perubahan pada entitas Car bisa tidak sengaja mempengaruhi fungsi yang berkaitan dengan Product.
+
+### 2. Kesulitan dalam Pengembangan dan Pemeliharaan ###
+Tidak mengikuti OCP membuat kode saya sulit untuk diperluas. Misalnya, menambahkan entitas baru ke sistem yang tidak menggunakan GenericRepository mungkin memerlukan modifikasi kode yang ada, meningkatkan risiko bug.
+
+### 3. Masalah Penggantian Komponen ### 
+Tidak adanya LSP membuat penggantian komponen dengan implementasi baru berisiko merusak sistem. Misalnya, mengganti ProductService dengan versi baru yang tidak kompatibel dengan penggunaan sebelumnya bisa menyebabkan kesalahan runtime.
+
+### 4. Ketergantungan pada Modul yang Tidak Dierlukan ### 
+Tanpa ISP, sistem mungkin memaksa komponen untuk bergantung pada fungsionalitas yang mereka tidak butuhkan, membuat sistem menjadi lebih rumit dan sulit untuk dipahami. Sebagai contoh, jika CarController harus menggunakan bagian dari ProductService, ini akan menciptakan ketergantungan yang tidak perlu.
+
+### 5. Tingkat Ketergantungan yang tinggi ###
+Tidak menerapkan DIP membuat proyek saya mungkin memiliki ketergantungan yang tinggi antara komponen tingkat rendah, yang membuat pengujian dan pengembangan lebih sulit. ketergantungan yang tinggi antara ProductController dan implementasi spesifik dari ProductService dapat mempersulit pengujian unit atau penggantian service.
 
 ## Reflection sebelumnya
 <details>
