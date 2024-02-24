@@ -3,50 +3,44 @@ package id.ac.ui.cs.advprog.eshop.repository;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Repository
-public class ProductRepository {
-    private List<Product> productData = new ArrayList<>();
-    private Map<String, Product> idtoProductHashMap = new HashMap<>();
+public class ProductRepository implements GenericRepository<Product> {
+    private Map<String, Product> idToProductMap = new HashMap<>();
 
-    public Product create(Product product){
-        product.setProductID(String.valueOf(UUID.randomUUID()));
-        productData.add(product);
-        idtoProductHashMap.put(product.getProductID(), product);
+    @Override
+    public Product create(Product product) {
+        product.setProductID(product.getProductID() == null ? UniqueIdGenerator.generate() : product.getProductID());
+        idToProductMap.put(product.getProductID(), product);
         return product;
     }
-
-    public Iterator<Product> findAll(){
-        return productData.iterator();
-    }
-
-    public Product edit(Product product) {
-        Product oldProduct = idtoProductHashMap.get(product.getProductID());
-        if(oldProduct!=null){
-            oldProduct.setProductQuantity(product.getProductQuantity());
-            oldProduct.setProductName(product.getProductName());
-            return product; 
-        }else{
-            return null;
-        }
-    }
     
-    public void delete(String productId){
-        productData.removeIf(product -> product.getProductID().equals(productId));
+    @Override
+    public Iterator<Product> findAll() {
+        return idToProductMap.values().iterator();
     }
 
-    public Product findById(String productId) {
-        for (Product product : productData){
-            if (product.getProductID().equals(productId)){
-                return product;
-            }
+    @Override
+    public Product findById(String id) {
+        return idToProductMap.get(id);
+    }
+
+    @Override
+    public Product update(String id, Product updatedProduct) {
+        if (idToProductMap.containsKey(id)) {
+            Product product = idToProductMap.get(id);
+            product.setProductName(updatedProduct.getProductName());
+            product.setProductQuantity(updatedProduct.getProductQuantity());
+            return product;
         }
         return null;
+    }
+
+    @Override
+    public void delete(String id) {
+        idToProductMap.remove(id);
     }
 }

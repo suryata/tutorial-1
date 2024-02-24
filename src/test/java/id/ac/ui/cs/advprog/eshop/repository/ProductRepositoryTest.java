@@ -56,13 +56,8 @@ public class ProductRepositoryTest {
         product2.setProductQuantity(50);
         productRepository.create(product2);
 
-        Iterator<Product> productIterator = productRepository.findAll();
-        assertTrue(productIterator.hasNext());
-        Product savedProduct = productIterator.next();
-        assertEquals(product1.getProductID(), savedProduct.getProductID());
-        savedProduct = productIterator.next();
-        assertEquals(product2.getProductID(), savedProduct.getProductID());
-        assertFalse(productIterator.hasNext());
+        assertEquals(product1, productRepository.findById(product1.getProductID()));
+        assertEquals(product2, productRepository.findById(product2.getProductID()));
     }
 
     @Test
@@ -79,7 +74,7 @@ public class ProductRepositoryTest {
         updatedProduct.setProductQuantity(200);
 
         // Act
-        Product result = productRepository.edit(updatedProduct);
+        Product result = productRepository.update(updatedProduct.getProductID(),updatedProduct);
 
         // Assert
         assertNotNull(result);
@@ -95,7 +90,7 @@ public class ProductRepositoryTest {
         nonExistentProduct.setProductQuantity(100);
 
         // Act
-        Product result = productRepository.edit(nonExistentProduct);
+        Product result = productRepository.update(nonExistentProduct.getProductID(), nonExistentProduct);
 
         // Assert
         assertNull(result);

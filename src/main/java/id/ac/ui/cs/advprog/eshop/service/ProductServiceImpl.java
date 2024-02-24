@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements GenericService<Product>{
 
     @Autowired
     private ProductRepository productRepository;
@@ -32,8 +32,8 @@ public class ProductServiceImpl implements ProductService{
     //untuk menginput product dan mengganti produk dengan UUID yang ingin diganti 
     //dengan product yang diinput
     @Override
-    public Product edit(Product product) {
-        productRepository.edit(product);
+    public Product update(String id, Product product) {
+        productRepository.update(id, product);
         return product;
     }
 
