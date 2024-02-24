@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 @Repository
-public class CarRepo implements GenericRepository<Car> {
+public class CarRepository implements GenericRepository<Car> {
     private Map<String, Car> idToCarMap = new HashMap<>();
 
     @Override
