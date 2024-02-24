@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarServiceImplTestt {
 
     @InjectMocks
-    private CarServiceImpl carServices;
+    CarServiceImpl carServices;
 
     @Mock
     private CarRepository carRepository;
