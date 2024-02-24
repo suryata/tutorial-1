@@ -10,7 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements GenericService<Car>{
+public class CarServiceImp implements GenericService<Car>{
+
     @Autowired
     private CarRepository carRepository;
 
