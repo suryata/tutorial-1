@@ -31,7 +31,7 @@ Selain itu saya juga mengaplikasikan SRP pada Controller yaitu dengan memisahkan
 
 ### 2. *Open-Closed Principle (OCP)*
 Pada project ini saya menggunakan prinsip OCP untuk membuat interface baru yang digunakan untuk CarRepository dan ProductRepository karena memiliki kesamaan yaitu sebagai suatu penyimpanan objek yang dibuat, maka saya membuat suatu interface bernama "GenericRepository" yang berguna untuk pengembangan selanjutnya yang sesuai dengan prinsip OCP.
-Berikut merupakan interface dari GenericRepository:
+Berikut merupakan interface dari `GenericRepository`:
 ```java
 public interface GenericRepository<T> {
     T create(T entity);
