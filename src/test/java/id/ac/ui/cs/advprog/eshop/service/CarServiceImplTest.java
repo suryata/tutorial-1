@@ -13,10 +13,10 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarServiceImplTest {
+class CarServiceImplTestt {
 
     @InjectMocks
-    private CarServiceImpl carService;
+    private CarServiceImpl carServices;
 
     @Mock
     private CarRepository carRepository;
@@ -32,7 +32,7 @@ class CarServiceImplTest {
         car.setCarName("Test Car");
         when(carRepository.create(car)).thenReturn(car);
         
-        Car createdCar = carService.create(car);
+        Car createdCar = carServices.create(car);
         
         assertEquals("Test Car", createdCar.getCarName());
         verify(carRepository, times(1)).create(car);
@@ -48,7 +48,7 @@ class CarServiceImplTest {
         List<Car> carList = Arrays.asList(car1, car2);
         when(carRepository.findAll()).thenReturn(carList.iterator());
         
-        List<Car> allCars = carService.findAll();
+        List<Car> allCars = carServices.findAll();
         
         assertEquals(2, allCars.size());
         assertTrue(allCars.contains(car1) && allCars.contains(car2));
@@ -62,7 +62,7 @@ class CarServiceImplTest {
         
         when(carRepository.update(car.getCarId(),car)).thenReturn(car);
         
-        Car updatedCar = carService.update(car.getCarId(),car);
+        Car updatedCar = carServices.update(car.getCarId(),car);
         
         assertEquals("Original Car", updatedCar.getCarName());
         verify(carRepository, times(1)).update(car.getCarId(),car);
@@ -74,7 +74,7 @@ class CarServiceImplTest {
         
         doNothing().when(carRepository).delete(carId);
         
-        carService.delete(carId);
+        carServices.delete(carId);
         
         verify(carRepository, times(1)).delete(carId);
     }
@@ -87,7 +87,7 @@ class CarServiceImplTest {
 
         when(carRepository.findById("123")).thenReturn(car);
 
-        Car foundCar = carService.findById("123");
+        Car foundCar = carServices.findById("123");
 
         assertEquals("Test Car", foundCar.getCarName());
         assertEquals("123", foundCar.getCarId());
