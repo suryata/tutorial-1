@@ -21,8 +21,10 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class OrderServiceImplTest {
+
     @InjectMocks
     OrderServiceImpl orderService;
+    
     @Mock
     OrderRepository orderRepository;
     List<Order> orders;
@@ -32,7 +34,7 @@ class OrderServiceImplTest {
         List <Product> products = new ArrayList<>();
 
         Product product1 = new Product();
-        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(2);
         products.add(product1);
