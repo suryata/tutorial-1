@@ -13,11 +13,13 @@ import java.util.HashMap;
 class PaymentTest {
     Map<String, String> paymentData;
     List<Product> products;
+    Order order;
 
     @BeforeEach
     void setup() {
         this.paymentData = new HashMap<>();
         this.products = new ArrayList<>();
+
 
         Product product1 = new Product();
         product1.setProductID("13652556-012a-4c07-b546-54eb1396d79b");
