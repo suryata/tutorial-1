@@ -16,6 +16,7 @@ public class BankTransferPayment extends Payment {
         
         this.paymentData = paymentData;
     }
+    
     public BankTransferPayment(String id, Order order, String method, Map<String, String >paymentData) {
         super(id, method, order, paymentData);
     }
