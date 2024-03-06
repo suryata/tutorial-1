@@ -5,8 +5,6 @@ import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.service.PaymentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -77,6 +75,7 @@ public class PaymentControllerTest {
                 .andExpect(view().name("paymentDetailAdmin"));
     }
 
+    @SuppressWarnings("null")
     @Test
     public void postPaymentAdminSetStatus_ShouldSetPaymentStatus() throws Exception {
         mockMvc.perform(post("/payment/admin/set-status/{paymentId}", samplePayment.getId())
