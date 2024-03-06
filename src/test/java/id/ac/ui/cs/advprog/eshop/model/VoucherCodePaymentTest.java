@@ -3,6 +3,9 @@ package id.ac.ui.cs.advprog.eshop.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import enums.PaymentMethod;
+import enums.PaymentStatus;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-class VoucherCodePaymentCodeTest {
+class VoucherCodePaymentTest {
     List<Product> products;
     List<Order> orders;
     List<Payment> payments;
@@ -47,13 +50,25 @@ class VoucherCodePaymentCodeTest {
         Map<String, String> paymentDataVoucher = new HashMap<>();
         paymentDataVoucher.put("voucherCode", "ESHOP1234ABC5678");
 
-        Payment payment = new VoucherCodePayment("4074c620-013b-4414-b085-08f7b089408c", orders.get(1), "VOUCHER", paymentDataVoucher);
+        Payment payment = new VoucherCodePayment("4074c620-013b-4414-b085-08f7b089408c", orders.get(1), PaymentMethod.VOUCHER.getValue(), paymentDataVoucher);
         assertSame(orders.get(1), payment.getOrder());
         assertEquals("4074c620-013b-4414-b085-08f7b089408c", payment.getId());
-        assertEquals("VOUCHER", payment.getMethod());
+        assertEquals(PaymentMethod.VOUCHER.getValue(), payment.getMethod());
         assertEquals(paymentDataVoucher, payment.getPaymentData());
     }
 
+    
+    @Test
+    void testCreatePaymentVoucherFailed16Length() {
+        Map<String, String> paymentDataVoucher = new HashMap<>();
+        paymentDataVoucher.put("voucherCode", "ESHOP1234ABC567");
+        
+        assertThrows(IllegalArgumentException.class, ()-> { 
+            new VoucherCodePayment("ec556e96-10a5-4d47-a068-d45c6fca71c0",orders.get(1),
+            PaymentMethod.VOUCHER.getValue(), paymentDataVoucher);
+        });
+    }
+    
     @Test
     void testCreatePaymentVoucherFailedESHOPStart() {
         Map<String, String> paymentDataVoucher = new HashMap<>();
@@ -61,22 +76,24 @@ class VoucherCodePaymentCodeTest {
         
         assertThrows(IllegalArgumentException.class, ()-> { 
             new VoucherCodePayment("ec556e96-10a5-4d47-a068-d45c6fca71c0",orders.get(1),
-                "VOUCHER", paymentDataVoucher);
+            PaymentMethod.VOUCHER.getValue(), paymentDataVoucher);
         });
     }
-
+    
     @Test
-    void testCreatePaymentVoucherFailed16Length() {
+    void testCreatePaymentVoucherWithStatus() {
         Map<String, String> paymentDataVoucher = new HashMap<>();
-        paymentDataVoucher.put("voucherCode", "ESHOP1234ABC567");
+        paymentDataVoucher.put("voucherCode", "ESHOP1234ABC5678");
 
-        assertThrows(IllegalArgumentException.class, ()-> { 
-            new VoucherCodePayment("ec556e96-10a5-4d47-a068-d45c6fca71c0",orders.get(1),
-            "VOUCHER", paymentDataVoucher);
-        });
+        VoucherCodePayment VoucherCodePayment = new VoucherCodePayment("ec556e96-10a5-4d47-a068-d45c6fca71c0",
+            orders.get(0), PaymentMethod.VOUCHER.getValue(), paymentDataVoucher, PaymentStatus.SUCCESS.getValue());
+        assertSame(orders.get(0), VoucherCodePayment.getOrder());
+        assertEquals("ec556e96-10a5-4d47-a068-d45c6fca71c0", VoucherCodePayment.getId());
+        assertEquals(PaymentMethod.VOUCHER.getValue(), VoucherCodePayment.getMethod());
+        assertEquals(paymentDataVoucher, VoucherCodePayment.getPaymentData());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), VoucherCodePayment.getStatus());
     }
-
-
+    
     @Test
     void testCreatePaymentVoucherFailed8Numerical() {
         Map<String, String> paymentDataVoucher = new HashMap<>();
@@ -84,7 +101,7 @@ class VoucherCodePaymentCodeTest {
         
         assertThrows(IllegalArgumentException.class, ()-> {
             new VoucherCodePayment("ec556e96-10a5-4d47-a068-d45c6fca71c0",orders.get(1),
-                "VOUCHER", paymentDataVoucher);
+                PaymentMethod.VOUCHER.getValue(), paymentDataVoucher);
         });
     }
 }
