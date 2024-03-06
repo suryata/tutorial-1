@@ -9,7 +9,19 @@
 
 <div class="container my-3">
     <h2>Payment for Order ID: <span th:text="${order.id}"></span></h2>
-    <p>Order Details: <span th:text="${order.details}"></span></p>
+    
+    <p>Order Author: <span th:text="${order.author}"></span></p>
+    <p>Order Status: <span th:text="${order.status}"></span></p>
+    
+    <div>
+        <h4>Products:</h4>
+        <ul>
+            <li th:each="product : ${order.products}">
+                <span th:text="${product.productName}"></span>: <span th:text="${product.productQuantity}"></span>
+            </li>
+        </ul>
+    </div>
+    
     <form th:action="@{/order/pay/{orderId}(orderId=${order.id})}" method="post">
         <button type="submit" class="btn btn-success">Pay Now</button>
     </form>

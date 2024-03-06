@@ -46,12 +46,12 @@ public class OrderController {
     }
 
     @PostMapping("/order/pay/{orderId}")
-    public String processPayment(@PathVariable("orderId") String orderId, Model model) {
+    public String processPayment(@PathVariable("orderId") String orderId) {
         Order order = orderService.updateStatus(orderId, "PAID");
         if (order != null) {
-            model.addAttribute("paymentId", order.getId());
-            return "paymentSuccess";
+            return "redirect:/order/paymentSuccess?paymentId=" + order.getId();
+        } else {
+            return "redirect:/order/error";
         }
-        return "paymentFailed";
     }
 }

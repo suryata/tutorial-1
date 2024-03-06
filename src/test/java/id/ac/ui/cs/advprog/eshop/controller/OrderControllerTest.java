@@ -78,14 +78,19 @@ public class OrderControllerTest {
                 .andExpect(view().name("paymentOrderPage"));
     }
 
+    @SuppressWarnings("null")
     @Test
     public void postPayOrder_ShouldProcessPayment() throws Exception {
         String orderId = "1";
-        given(orderService.updateStatus(orderId, "PAID")).willReturn(orders.get(0));
-
+        Order expectedOrder = orders.get(0); // Assuming this is the order you're expecting.
+        given(orderService.updateStatus(orderId, "PAID")).willReturn(expectedOrder);
+    
+        String expectedRedirectUrl = String.format("/order/paymentSuccess?paymentId=%s", expectedOrder.getId());
+    
         mockMvc.perform(post("/order/pay/{orderId}", orderId))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/order/paymentSuccess?paymentId=" + orders.get(0).getId()));
+                .andExpect(redirectedUrl(expectedRedirectUrl));
     }
+    
 }
 
