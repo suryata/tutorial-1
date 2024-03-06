@@ -23,33 +23,31 @@ public class Payment {
         this.setStatus(status);
     }
 
-    private void setOrder(Order order) {
-        if (order == null) {
-            throw new IllegalArgumentException("Order cannot be null");
-        }
-
-        this.order = order;
-    }
-    
     public Payment(String id, String method, Order order, Map<String, String> paymentData) {
         this(id, method, order, paymentData, PaymentStatus.PENDING.getValue());
     }
 
-    
-    protected void setPaymentData(Map<String, String> paymentData) {
-        if (PaymentMethod.contains(this.method)) {
-            throw new IllegalArgumentException(
-                "Unable to assign payment data specific to a method when the payment method is not specified"
-            );
+    private void setOrder(Order order) {
+        if (order == null) {
+            throw new IllegalArgumentException("Order can't null");
+        } else {
+            this.order = order;
         }
-        this.paymentData = null;
     }
 
     public void setStatus(String status) {
-        if (!PaymentStatus.contains(status)) {
-            throw new IllegalArgumentException("Invalid payment status");
+        if (PaymentStatus.contains(status)) {
+            this.status = status;
+        } else {
+            throw new IllegalArgumentException("Invalid payment");
         }
-        this.status = status;
     }
 
+    protected void setPaymentData(Map<String, String>paymentData) {
+        if (PaymentMethod.contains(this.method)) {
+            throw new IllegalArgumentException("Payment method is not specified");
+        } else {
+            this.paymentData = null;
+        }
+    }
 }
