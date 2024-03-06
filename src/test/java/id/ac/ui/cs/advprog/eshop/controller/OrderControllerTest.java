@@ -2,13 +2,15 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import id.ac.ui.cs.advprog.eshop.model.Order;
+import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.OrderService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +32,11 @@ public class OrderControllerTest {
 
     @BeforeEach
     public void setup() {
-        Order order = new Order("1", Arrays.asList(new Product("P1", "Product 1", 100.0)), System.currentTimeMillis(), "Author");
+        Product product1 = new Product();
+        product1.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(2);
+        Order order = new Order("1", Arrays.asList(product1), System.currentTimeMillis(), "Author");
         orders = Arrays.asList(order);
     }
 
@@ -48,6 +54,7 @@ public class OrderControllerTest {
                 .andExpect(view().name("historyForm"));
     }
 
+    @SuppressWarnings("null")
     @Test
     public void postHistoryForm_ShouldReturnOrders() throws Exception {
         String author = "Author";
