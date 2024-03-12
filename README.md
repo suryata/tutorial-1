@@ -12,6 +12,21 @@
 **2206081370**<br/>
 **ProLan B**<br/>
 
+# **Modul 4 - Advanced Programming**
+
+## Reflection
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+    Saya merasa bahwa prosedur TDD sangat bermanfaat bagi saya karena memberikan struktur kerja yang jelas. Proses TDD terbagi menjadi tiga fase: [RED], [GREEN], dan [REFACTOR]. Pembagian ini sangat membantu dalam implementasi kelas karena sebelum membuat suatu kelas, semua skenario, baik yang positif maupun negatif, sudah diantisipasi. Dengan demikian, TDD sangat berguna dalam fase pengembangan untuk memastikan kode yang lebih aman dan mempermudah proses refactoring.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+    Unit tes yang saya buat dalam tutorial ini telah memenuhi prinsip F.I.R.S.T karena algoritma yang dirancang sudah disesuaikan dengan metode tertentu dan tidak mengganggu metode lain. Dalam tes layanan, saya juga telah menggunakan mock sehingga tidak mempengaruhi kode asli. Hasil dari setiap tes juga disertai dengan asersinya untuk memastikan semua kemungkinan dapat diperiksa dengan baik. Tentu saja, setiap tes dirancang untuk mencakup semua kemungkinan kasus "happy" dan "unhappy" dari metode yang diuji sebanyak mungkin.
+
+## Reflection sebelumnya
+<details>
+<summary>Module 3</summary>
 # **Modul 3 - Advanced Programming**
 ## 1. Explain what principles you apply to your project! ##
 
@@ -106,8 +121,7 @@ Tanpa ISP, sistem mungkin memaksa komponen untuk bergantung pada fungsionalitas 
 
 ### 5. Tingkat Ketergantungan yang tinggi ###
 Tidak menerapkan DIP membuat proyek saya mungkin memiliki ketergantungan yang tinggi antara komponen tingkat rendah, yang membuat pengujian dan pengembangan lebih sulit. ketergantungan yang tinggi antara ProductController dan implementasi spesifik dari ProductService dapat mempersulit pengujian unit atau penggantian service.
-
-## Reflection sebelumnya
+</details>
 <details>
 <summary>Module 2</summary>
 
